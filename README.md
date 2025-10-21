@@ -1,244 +1,81 @@
-# AMP Plugin Template for .NET 8
+# Repository Archived - Code Transferred to Barrer Software
 
-This is an updated plugin template for CubeCoders AMP 2.5+ which uses .NET 8 instead of .NET Framework 4.8.
+**This repository has been archived and all code has been transferred to Barrer Software.**
 
-## Prerequisites
+## New Official Location
 
-- Visual Studio 2022 (17.8 or later)
-- .NET 8 SDK
-- AMP 2.5 or later installed
+**GitHub:** https://github.com/barrersoftware/AMP-Visual-Studios-plugin  
+**Organization:** Barrer Software  
+**Copyright:** © 2025 Barrer Software. All Rights Reserved.
 
-## Getting Started
+## Copyright Transfer Notice
 
-### 1. Create New Plugin
+All code, templates, documentation, and materials previously published in this 
+repository are now the exclusive property of **Barrer Software**.
 
-1. Clone or download this template
-2. Open the `.csproj` file in Visual Studio
-3. Replace all `$safeprojectname$` placeholders with your plugin name
-4. Replace `$author$`, `$company$`, etc. with your information
-5. Generate a new GUID for `PluginID` in `PluginMain.cs`
+### Historical Note
 
-### 2. Configure AMP Reference
+This repository was created under personal account (ssfdre38) but all work was 
+created for and is now owned by Barrer Software.
 
-The template references `ModuleShared.dll` from AMP. You need to set the path:
+## Statement Regarding Recent Events
 
-**Option A: Environment Variable (Recommended)**
-```cmd
-setx AMPINSTALLDIR "C:\Path\To\Your\AMP\Installation"
-```
+This code was originally created to help the CubeCoders AMP community by providing 
+an updated .NET 8 plugin template. Unfortunately, our contribution was rejected by 
+CubeCoders staff.
 
-**Option B: Direct Path**
-Edit the `.csproj` file and replace:
-```xml
-<HintPath>$(AMPINSTALLDIR)\ModuleShared.dll</HintPath>
-```
-with:
-```xml
-<HintPath>C:\Path\To\Your\AMP\Installation\ModuleShared.dll</HintPath>
-```
+### Apology to Mike Rihan (CubeCoders)
 
-### 3. Build the Plugin
+We sincerely apologize to Mike Rihan and the CubeCoders team for any confusion or 
+inconvenience. Our intent was genuinely to help the AMP community. We understand 
+that there may have been company policies or considerations we were not aware of.
 
-```bash
-dotnet build -c Release
-```
+We hold no ill will toward you or the majority of the CubeCoders staff. The rejection 
+of our contribution does not reflect on your leadership or vision for AMP.
 
-The output will be in `bin/Release/net8.0/`
+### Regarding James (IceOfWraith)
 
-### 4. Deploy to AMP
+However, we must acknowledge that the handling of this situation by James (IceOfWraith) 
+was unprofessional and created unnecessary hostility. The dismissal of a community 
+contribution with references to "previous legal threats" was inappropriate and harmful 
+to community relations.
 
-Copy the following files to your AMP plugins directory:
-- `YourPlugin.dll`
-- `WebRoot/` folder (if you have web interface)
+To James: Your actions toward Daniel (ssfdre38/ssfdre38-hue) and by extension Barrer 
+Software have been consistently negative. We hope you can reflect on how you interact 
+with community members who are genuinely trying to help.
 
-**Windows:** `%ProgramData%\CubeCoders\AMP\instances\[InstanceName]\Plugins\YourPlugin\`
-**Linux:** `/home/amp/.ampdata/instances/[InstanceName]/Plugins/YourPlugin/`
+## Going Forward
 
-### 5. Restart AMP
+Barrer Software will continue to create tools for the community. All our work will be:
+- Properly copyrighted and attributed
+- Licensed for community use (typically MIT License)
+- Protected against unauthorized appropriation
+- Made available to developers who need modern tools
 
-Restart your AMP instance to load the new plugin:
-```bash
-ampinstmgr restart [InstanceName]
-```
+## Official Barrer Software Resources
 
-## Project Structure
+- **Website:** https://barrersoftware.com
+- **Copyright Notice:** https://barrersoftware.com/copyright.html
+- **GitHub Organization:** https://github.com/barrersoftware
+- **Support Email:** support@barrersoftware.com
 
-```
-YourPlugin/
-├── PluginMain.cs           # Main plugin class (inherits from AMPPlugin)
-├── YourPlugin.csproj       # .NET 8 project file
-├── WebRoot/                # Web interface files (optional)
-│   ├── Plugin.html         # Main HTML interface
-│   ├── CSS/
-│   │   └── Plugin.css      # Stylesheet (dark theme)
-│   └── Scripts/
-│       └── Plugin.js       # Frontend JavaScript
-└── README.md              # This file
-```
+## For Users Looking for the AMP Plugin Template
 
-## Plugin Components
+Please visit the official Barrer Software repository:
 
-### PluginMain.cs
+**https://github.com/barrersoftware/AMP-Visual-Studios-plugin**
 
-Main plugin class that AMP loads. Key members:
-
-- **Metadata Properties:**
-  - `DisplayName` - Name shown in AMP UI
-  - `Author` - Your name
-  - `Description` - Plugin description
-  - `PluginID` - Unique GUID
-  - `PluginVersion` - Version number
-  - `HasWebRoot` - Set to `true` if you have web interface
-  - `WebRootPath` - Path to WebRoot folder
-
-- **Lifecycle Methods:**
-  - `Init()` - Called when plugin loads
-  - `Shutdown()` - Called when plugin unloads
-
-- **Web API Methods:**
-  - Decorated with `[WebMethod]` attribute
-  - Accessible at `/API/YourPlugin/MethodName`
-  - Return `ActionResult` objects
-
-### Web Interface
-
-- **HTML** - Located in `WebRoot/Plugin.html`
-- **CSS** - Dark theme matching AMP's style
-- **JavaScript** - Helper functions for API calls
-
-## Example: Creating a Web API Method
-
-```csharp
-[WebMethod("Gets server status", "getStatus")]
-public ActionResult GetStatus()
-{
-    try
-    {
-        return new ActionResult
-        {
-            Status = ActionStatus.OK,
-            Result = new
-            {
-                success = true,
-                serverName = "MyServer",
-                uptime = TimeSpan.FromHours(24)
-            }
-        };
-    }
-    catch (Exception ex)
-    {
-        return new ActionResult
-        {
-            Status = ActionStatus.Failure,
-            Reason = ex.Message
-        };
-    }
-}
-```
-
-Call from JavaScript:
-```javascript
-const result = await callAPI('GetStatus');
-console.log(result);
-```
-
-## Configuration Menu Integration
-
-Your plugin can appear in AMP's Configuration menu by registering it in JavaScript:
-
-```javascript
-if (window.AMP && window.AMP.registerPlugin) {
-    window.AMP.registerPlugin({
-        name: 'YourPlugin',
-        displayName: 'Your Plugin',
-        category: 'Configuration',
-        icon: 'fa-plug',
-        route: '/Plugin.html',
-        permission: 'Core.WebPanel.ViewPlugins'
-    });
-}
-```
-
-## Best Practices
-
-1. **Error Handling** - Always wrap API methods in try-catch
-2. **Logging** - Use `Console.WriteLine()` for debugging
-3. **Permissions** - Check user permissions before sensitive operations
-4. **API Design** - Keep API methods simple and focused
-5. **Documentation** - Comment your code and API methods
-6. **Testing** - Test on both Windows and Linux if targeting both platforms
-
-## Debugging
-
-### Enable Debug Output
-```csharp
-public override void Init(IApplicationWrapper app, ProviderManifest manifest)
-{
-    base.Init(app, manifest);
-    Console.WriteLine($"[YourPlugin] Debug: Initializing...");
-}
-```
-
-### Check AMP Logs
-**Windows:** `%ProgramData%\CubeCoders\AMP\instances\[InstanceName]\AMP_Logs\`
-**Linux:** `/home/amp/.ampdata/instances/[InstanceName]/AMP_Logs/`
-
-## Common Issues
-
-### Plugin Not Loading
-- Check that your DLL is in the correct plugins directory
-- Verify the DLL is named exactly like the directory
-- Check AMP logs for errors
-- Ensure `PluginMain` class exists and inherits from `AMPPlugin`
-
-### Web Interface Not Accessible
-- Verify `HasWebRoot = true` in PluginMain.cs
-- Check that WebRoot folder is deployed with DLL
-- Ensure plugin is actually loaded (check logs)
-
-### API Methods Not Working
-- Verify `[WebMethod]` attribute is present
-- Check method is `public`
-- Ensure return type is `ActionResult`
-- Test API endpoint: `http://youramp:port/API/YourPlugin/MethodName`
-
-## Differences from .NET Framework 4.8 Template
-
-### What's New
-- ✅ Target Framework: `net8.0`
-- ✅ Uses SDK-style project format
-- ✅ Nullable reference types enabled
-- ✅ Implicit usings enabled
-- ✅ Modern C# language features available
-
-### What's Changed
-- Project file is now SDK-style (simpler)
-- No `packages.config` (uses PackageReference)
-- Different build output structure
-- Modern async/await patterns recommended
-
-### What's Removed
-- No legacy .NET Framework dependencies
-- No app.config (use appsettings.json if needed)
-- No AssemblyInfo.cs (properties in .csproj)
-
-## Support
-
-- **AMP Documentation:** https://cubecoders.com/AMPdocs
-- **AMP Support:** https://cubecoders.com/support
-- **AMP Discord:** Join for community support
-- **GitHub Issues:** https://github.com/CubeCoders/AMP/issues
-
-## License
-
-This template is provided for use with CubeCoders AMP. Check AMP's license terms for plugin development and distribution.
-
-## Contributing
-
-If you find issues or have improvements for this template, please submit them to the AMP GitHub repository.
+This is the maintained, up-to-date version with:
+- .NET 8 support
+- Modern C# 12 features
+- Complete documentation
+- Professional support
 
 ---
 
-**Template Version:** 1.0.0 (.NET 8)  
-**Compatible with:** AMP 2.5+  
-**Last Updated:** October 2025
+**Copyright © 2025 Barrer Software. All Rights Reserved.**
+
+This repository remains for historical reference only. All active development 
+has moved to the Barrer Software organization.
+
+**Last Updated:** October 21, 2025
