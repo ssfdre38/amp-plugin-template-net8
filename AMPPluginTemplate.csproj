@@ -1,0 +1,37 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <AssemblyName>$safeprojectname$</AssemblyName>
+    <RootNamespace>$safeprojectname$</RootNamespace>
+    <OutputType>Library</OutputType>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <ProduceReferenceAssembly>false</ProduceReferenceAssembly>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <Company>$company$</Company>
+    <Authors>$author$</Authors>
+    <Product>$safeprojectname$</Product>
+    <Description>AMP Plugin for CubeCoders AMP 2.5+</Description>
+    <Copyright>Copyright © $year$ $company$</Copyright>
+    <Version>1.0.0</Version>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Reference AMP's plugin base assemblies -->
+    <!-- Note: These paths may need adjustment based on your AMP installation -->
+    <Reference Include="ModuleShared">
+      <HintPath>$(AMPINSTALLDIR)\ModuleShared.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Include WebRoot files in build output -->
+    <None Include="WebRoot\**\*" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+</Project>

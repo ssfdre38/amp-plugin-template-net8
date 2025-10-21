@@ -1,0 +1,35 @@
+<VSTemplate Version="3.0.0" Type="Project" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005">
+  <TemplateData>
+    <Name>AMP Plugin (.NET 8)</Name>
+    <Description>Project template for creating CubeCoders AMP plugins targeting .NET 8</Description>
+    <Icon>icon.ico</Icon>
+    <ProjectType>CSharp</ProjectType>
+    <RequiredFrameworkVersion>4.8</RequiredFrameworkVersion>
+    <SortOrder>1000</SortOrder>
+    <TemplateID>CubeCodersLimited.AMPPluginTemplate.NET8</TemplateID>
+    <CreateNewFolder>true</CreateNewFolder>
+    <DefaultName>AMPPlugin</DefaultName>
+    <ProvideDefaultName>true</ProvideDefaultName>
+    <PromptForSaveOnCreation>true</PromptForSaveOnCreation>
+    <EnableLocationBrowseButton>true</EnableLocationBrowseButton>
+    <CreateInPlace>true</CreateInPlace>
+  </TemplateData>
+  <TemplateContent>
+    <Project File="AMPPluginTemplate.csproj" ReplaceParameters="true">
+      <ProjectItem ReplaceParameters="true" TargetFileName="PluginMain.cs">PluginMain.cs</ProjectItem>
+      <Folder Name="WebRoot" TargetFolderName="WebRoot">
+        <ProjectItem ReplaceParameters="true" TargetFileName="Plugin.html">Plugin.html</ProjectItem>
+        <Folder Name="CSS" TargetFolderName="CSS">
+          <ProjectItem ReplaceParameters="false" TargetFileName="Plugin.css">Plugin.css</ProjectItem>
+        </Folder>
+        <Folder Name="Scripts" TargetFolderName="Scripts">
+          <ProjectItem ReplaceParameters="true" TargetFileName="Plugin.js">Plugin.js</ProjectItem>
+        </Folder>
+      </Folder>
+    </Project>
+  </TemplateContent>
+  <WizardExtension>
+    <Assembly>Microsoft.VisualStudio.TemplateWizard, Version=17.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</Assembly>
+    <FullClassName>Microsoft.VisualStudio.TemplateWizard.ProjectWizard</FullClassName>
+  </WizardExtension>
+</VSTemplate>
